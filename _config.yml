@@ -22,9 +22,9 @@ timezone: America/Chicago
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Chirpy                          # the main title
+title: David Wolfe                          # the main title
 
-tagline: A text-focused Jekyll theme   # it will display as the sub-title
+tagline: A space for creative and professional endeavors   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   A minimal, portfolio, sidebar,
@@ -86,7 +86,7 @@ theme_mode:   # [light|dark]
 img_cdn: ''
 
 # the avatar on sidebar, support local or CORS resources
-avatar: https://cdn.jsdelivr.net/gh/cotes2020/chirpy-images/commons/avatar.jpg
+avatar: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpm1.narvii.com%2F6478%2Fcdfefc4eef1fea9c9b83f9027628899128f39627_hq.jpg&f=1&nofb=1
 
 # boolean type, the global switch for ToC in posts.
 toc: true
