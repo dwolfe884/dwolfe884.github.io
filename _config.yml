@@ -27,31 +27,29 @@ title: David Wolfe                          # the main title
 tagline: A space for creative and professional endeavors   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
-  A minimal, portfolio, sidebar,
-  bootstrap Jekyll theme with responsive web design
-  and focuses on text presentation.
+  A space for creative and professional endeavors. Capture The Flag (CTF) WriteUps, HackTheBox WriteUps, Cyber Security blog posts. Learning all the time.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: ''
 
 github:
-  username: github_username             # change to your github username
+  username: dwolfe884             # change to your github username
 
 twitter:
-  username: twitter_username            # change to your twitter username
+  username: Davey_Wavey00            # change to your twitter username
 
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: your_full_name
-  email: example@doamin.com             # change to your email address
+  name: David Wolfe
+  email: david@wolfe-works.com             # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username      # change to your twitter homepage
-    - https://github.com/username       # change to your github homepage
+    - https://twitter.com/Davey_Wavey00      # change to your twitter homepage
+    - https://github.com/dwolfe884       # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
+    - https://www.linkedin.com/in/davidjwolfe
 
 google_site_verification: google_meta_tag_verification # change to your verification string
 
@@ -86,7 +84,7 @@ theme_mode:   # [light|dark]
 img_cdn: ''
 
 # the avatar on sidebar, support local or CORS resources
-avatar: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpm1.narvii.com%2F6478%2Fcdfefc4eef1fea9c9b83f9027628899128f39627_hq.jpg&f=1&nofb=1
+avatar: https://media-exp1.licdn.com/dms/image/C4E03AQF04Nx3j8oKxA/profile-displayphoto-shrink_800_800/0/1559231457771?e=1632960000&v=beta&t=VA06EdbBdo9lS2PCrjjX0Ko9Gx1KhSKEYaz0GvEkzYI 
 
 # boolean type, the global switch for ToC in posts.
 toc: true
