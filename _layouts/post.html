@@ -17,7 +17,7 @@ layout: default
           <span class="semi-bold">
             {{ page.author | default: site.social.name }}
           </span>
-          {% capture _preposition %}{{ site.data.locales[site.lang].post.published | default: 'on' }}{% endcapture %}
+          {% capture _preposition %}{{ site.data.locales[site.lang].post.published }}{% endcapture %}
           {% include timeago.html date=page.date tooltip=true preposition=_preposition %}
         </div>
 
@@ -25,7 +25,7 @@ layout: default
           <!-- lastmod -->
           {% if page.last_modified_at %}
           <span>
-            {{ site.data.locales[site.lang].post.updated | default: 'Updated' }}
+            {{ site.data.locales[site.lang].post.updated }}
             {% include timeago.html date=page.last_modified_at class="lastmod" tooltip=true %}
           </span>
           {% endif %}
@@ -38,7 +38,7 @@ layout: default
           <span id="pv" class="pageviews">
             <i class="fas fa-spinner fa-spin fa-fw"></i>
           </span>
-          {{ site.data.locales[site.lang].post.pageview_measure | default: "views" }}
+          {{ site.data.locales[site.lang].post.pageview_measure }}
           {% endif %}
 
         </div>

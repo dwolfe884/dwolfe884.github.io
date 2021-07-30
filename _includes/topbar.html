@@ -10,7 +10,7 @@
 
     {% if paths.size == 0 or page.layout == 'home' %}
       <!-- index page -->
-      <span>{{ site.data.locales[site.lang].tabs.home | default: 'home' | capitalize }}</span>
+      <span>{{ site.data.locales[site.lang].tabs.home | capitalize }}</span>
 
     {% else %}
 
@@ -19,7 +19,7 @@
         {% if forloop.first %}
           <span>
             <a href="{{ '/' | relative_url }}">
-              {{ site.data.locales[site.lang].tabs.home | default: 'home' | capitalize }}
+              {{ site.data.locales[site.lang].tabs.home | capitalize }}
             </a>
           </span>
 
@@ -66,10 +66,10 @@
     <span id="search-wrapper" class="align-items-center">
       <i class="fas fa-search fa-fw"></i>
       <input class="form-control" id="search-input" type="search"
-        aria-label="search" autocomplete="off" placeholder="{{ site.data.locales[site.lang].search.hint | default: 'Search' | capitalize }}...">
+        aria-label="search" autocomplete="off" placeholder="{{ site.data.locales[site.lang].search.hint | capitalize }}...">
       <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i>
     </span>
-    <span id="search-cancel" >{{ site.data.locales[site.lang].search.cancel | default: 'Cancel' }}</span>
+    <span id="search-cancel" >{{ site.data.locales[site.lang].search.cancel }}</span>
   </div>
 
 </div>
