@@ -42,13 +42,13 @@ In this screenshot guess is initialized as ```int guess[4]``` and holds:
 * guess[2] = number of correct guesses in a row
 * guess[3] = player guess
 
-So the question is, why would there be a line that takes the number of guesses, mods by 0x21 and adds 5? And then tries to index the guess array by that number?? At a minimum this line would produce ```guess[6]``` which would still be out of bounds. This line confused me, I thought it might of been a bug with the decompiler or something. Again, this is a mystery that went unsolved for somei time.
+So the question is, why would there be a line that takes the number of guesses, mods by 0x21 and adds 5? And then tries to index the guess array by that number?? At a minimum this line would produce ```guess[6]``` which would still be out of bounds. This line confused me, I thought it might of been a bug with the decompiler or something. Again, this is a mystery that went unsolved for some time.
 
 After staring at that line for far too long, I decided to write a python script to automatically guess numbers in an attempt to find some repeating pattern. I didn't find any patterns, but I did notice something different...
 
 ![Number of Guesses](/images/dice/32.PNG)
 
-Rememeber all the way back at the beginning of this post when I said the program gives us 100 guesses before exiting? That's not what I was seeing with my script. I was consistently given 32 guesses before the socket just closed. Nothing in the code indicated that it would disconnect or exit after 32 guesses so I knew something important was happening. I ran my script against my local version of the program and found the root cause.
+Remember all the way back at the beginning of this post when I said the program gives us 100 guesses before exiting? That's not what I was seeing with my script. I was consistently given 32 guesses before the socket just closed. Nothing in the code indicated that it would disconnect or exit after 32 guesses so I knew something important was happening. I ran my script against my local version of the program and found the root cause.
 
 ![Seg Fault](/images/dice/segfault.PNG)
 
