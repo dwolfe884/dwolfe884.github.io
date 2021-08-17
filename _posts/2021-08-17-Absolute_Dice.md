@@ -30,7 +30,7 @@ If we are to be tasked with guessing a totally random number 30 times in a row. 
 
 As you can see in this screenshot, we are able to see that the file being opened is linux's ```/dev/urandom```. From this file 4 bytes of data are read in and used as the seed for srand.
 
-This is interesting to say the least. I can't see any problem with using /dev/urandom to generate random noise to use as the seed for rand(). I was stuck here for a while. I read a lot of blog posts about predicting random numbers and breaking different systems. However, all of those posts assumed that the seeding of the random number generator was flawed in some way and this challenge didn't seem to have any issues.
+This is very interesting. I can't see any problem with using /dev/urandom to generate random noise to use as the seed for rand(). I was stuck here for a while. I read a lot of blog posts about predicting random numbers and breaking different systems. However, all of those posts assumed that the seeding of the random number generator was flawed in some way and this challenge didn't seem to have any issues.
 
 I ended up diving back into ghidra to see if I had missed anything in the code. That's when I found 1 line of code that made 0 sense to me.
 
@@ -42,7 +42,7 @@ In this screenshot guess is initialized as ```int guess[4]``` and holds:
 * guess[2] = number of correct guesses in a row
 * guess[3] = player guess
 
-So the question is, why would there be a line that takes the number of guesses, mods by 0x21 and adds 5? And then tries to index the guess array by that number?? At a minimum this line would produce ```guess[6]``` which would still be out of bounds. This line confused be to say the least, I thought it might of been a bug with the decompiler or something. Again, this is a mystery that went unsolved for somei time.
+So the question is, why would there be a line that takes the number of guesses, mods by 0x21 and adds 5? And then tries to index the guess array by that number?? At a minimum this line would produce ```guess[6]``` which would still be out of bounds. This line confused me, I thought it might of been a bug with the decompiler or something. Again, this is a mystery that went unsolved for somei time.
 
 After staring at that line for far too long, I decided to write a python script to automatically guess numbers in an attempt to find some repeating pattern. I didn't find any patterns, but I did notice something different...
 
