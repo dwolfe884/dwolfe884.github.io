@@ -42,17 +42,17 @@ In this screenshot guess is initialized as ```int guess[4]``` and holds:
 * guess[2] = number of correct guesses in a row
 * guess[3] = player guess
 
-So the question is, why would there be a line that takes the number of guesses, mods by 0x21 and adds 5? And then tries to index the guess array by that number?? At a minimum this line would produce ```guess[6]``` which would still be out of bounds. This line confused me, I thought it might of been a bug with the decompiler or something. Again, this is a mystery that went unsolved for somei time.
+So the question is, why would there be a line that takes the number of guesses, mods by 0x21 and adds 5? And then tries to index the guess array by that number?? At a minimum this line would produce ```guess[6]``` which would still be out of bounds. This line confused me, I thought it might of been a bug with the decompiler or something. Again, this is a mystery that went unsolved for some time.
 
 After staring at that line for far too long, I decided to write a python script to automatically guess numbers in an attempt to find some repeating pattern. I didn't find any patterns, but I did notice something different...
 
 ![Number of Guesses](/images/dice/32.PNG)
 
-Rememeber all the way back at the beginning of this post when I said the program gives us 100 guesses before exiting? That's not what I was seeing with my script. I was consistently given 32 guesses before the socket just closed. Nothing in the code indicated that it would disconnect or exit after 32 guesses so I knew something important was happening. I ran my script against my local version of the program and found the root cause.
+Remember all the way back at the beginning of this post when I said the program gives us 100 guesses before exiting? That's not what I was seeing with my script. I was consistently given 32 guesses before the socket just closed. Nothing in the code indicated that it would disconnect or exit after 32 guesses so I knew something important was happening. I ran my script against my local version of the program and found the root cause.
 
 ![Seg Fault](/images/dice/segfault.PNG)
 
-We were getting a segmentation fault after 32 guesses! This made so much sense after what I had just learned about from that index out of bounds line in Ghidra. The max number from the line ```guess[0] % 0x21 + 5``` is 37 and it occurse when the number of guesses (guess[0]) equals 32.
+We were getting a segmentation fault after 32 guesses! This made so much sense after what I had just learned about from that index out of bounds line in Ghidra. The max number from the line ```guess[0] % 0x21 + 5``` is 37 and it occurs when the number of guesses (guess[0]) equals 32.
 
 Knowing this I started running gdb and giving it 31 random guesses and then stopping for deeper analysis on guess 32 to see why exactly this fault was occuring. From the above screenshot we are able to see that the fault is occuring inside of the ```fread()``` function. So, on guess 32 I gave it the string ```123456``` and jumped to the code where it tries to open ```/dev/urandom``` and read in data.
 
@@ -61,7 +61,7 @@ Knowing this I started running gdb and giving it 31 random guesses and then stop
 Aha! The program is segfaulting because the 32nd guess gets copied perfectly into the spot in memory that normally points to the string for ```/dev/urandom``` This immediently gave me an idea for an exploit path and I started gathering data and developing my payload.
 ## Exploit:
 
-We are now able to control the file that is used to seed the random number generator after 31 incorrect guesses. All we have to do now is replace ```/dev/urandom``` with a file that has constent data and we should be able to get consistent, predictable numbers. I searched the original binary for strings to try and find any paths to different files in memory. 
+We are now able to control the file that is used to seed the random number generator after 31 incorrect guesses. All we have to do now is replace ```/dev/urandom``` with a file that has constent data and we should be able to get consistant, predictable numbers. I searched the original binary for strings to try and find any paths to different files in memory. 
 ![New File String](/images/dice/fileString.PNG)
 
 Confienently there was one such string. The string ```/lib/ld-linux.so.2``` was being stored at ```0x08048154``` in memory. To craft my payload I took that hex value and converted it to decimal ```134512980``` and placed it as my 32nd guess after 31 0's. I then tested this in GDB
