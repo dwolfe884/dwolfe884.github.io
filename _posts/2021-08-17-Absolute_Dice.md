@@ -62,6 +62,7 @@ Aha! The program is segfaulting because the 32nd guess gets copied perfectly int
 ## Exploit:
 
 We are now able to control the file that is used to seed the random number generator after 31 incorrect guesses. All we have to do now is replace ```/dev/urandom``` with a file that has constent data and we should be able to get consistant, predictable numbers. I searched the original binary for strings to try and find any paths to different files in memory. 
+
 ![New File String](/images/dice/fileString.PNG)
 
 Confienently there was one such string. The string ```/lib/ld-linux.so.2``` was being stored at ```0x08048154``` in memory. To craft my payload I took that hex value and converted it to decimal ```134512980``` and placed it as my 32nd guess after 31 0's. I then tested this in GDB
