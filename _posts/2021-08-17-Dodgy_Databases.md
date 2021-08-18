@@ -10,13 +10,13 @@ tags: [ctf,writeup,ractf]
 One of our most senior engineers wrote this database code, it's super well commented code, 
 but it does seem like they have a bit of a god complex. See if you can help them out.
 ```
-We are give the source code for a simple service running that just takes in a username and adds that username to some backend databse
+We are give the source code for a simple service running that just takes in a username and adds that username to some backend database.
 ## Methodology
 This challenge was under the pwn/reversing category. I first looked through the provided .c file for any obvious issues. The first noteworthy line of code I could find was on line 204.
 
 ![Free Vulnerability](/images/database/freeVuln.PNG)
 
-In this snippet we can see the memory holding the admin object being freed and then immediantly creating a new user object after that. This sequence of events casues a ```Use-After-Free``` vulnerability since the now freed admin object is still being passed into the ```users_register_user``` function. On top of that, because these objects are the same size and structure, it's very likley that our new user object would reuse some/all of the memory originally allocated for the admin object.
+In this snippet we can see the memory holding the admin object being freed and then immediately creating a new user object after that. This sequence of events causes a ```Use-After-Free``` vulnerability since the now freed admin object is still being passed into the ```users_register_user``` function. On top of that, because these objects are the same size and structure, it's very likely that our new user object would reuse some/all of the memory originally allocated for the admin object.
 
 I continued to read through this source code and found our goal, in this case where the flag is printed to the screen.
 ![Goal](/images/database/goal.PNG)
@@ -35,7 +35,7 @@ My first tests involved throwing a large number of 'A's at the input to see what
 I noticed that after 19 characters I started getting a permission denied error. If we look back at the code snippet from earlier, this means we have changed the value of ```admin->role``` and the else branch is now being followed instead of the first if. This is great news and means we are one step closer to taking the else if branch and getting the flag.
 
 ## Exploit:
-With all of this information gathered I was read to try putting together an exploit. I used the tried-and-true python -c method for feeding in none ascii characters into our binary.
+With all of this information gathered I was ready to try putting together an exploit. I used the tried-and-true python -c method for feeding in none ascii characters into our binary.
 My payload ended up being a padding of 20 A's, followed by 0xBEEFCAFE reversed to account for endiness
 ```python
 python3 -c 'import sys;sys.stdout.buffer.write(b"A"*20+b"\xFE\xCA\xEF\xBE")'
