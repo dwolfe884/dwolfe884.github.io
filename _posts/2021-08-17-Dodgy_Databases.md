@@ -35,7 +35,7 @@ My first tests involved throwing a large number of 'A's at the input to see what
 I noticed that after 19 characters I started getting a permission denied error. If we look back at the code snippet from earlier, this means we have changed the value of ```admin->role``` and the else branch is now being followed instead of the first if. This is great news and means we are one step closer to taking the else if branch and getting the flag.
 
 ## Exploit:
-With all of this information gathered I was ready to try putting together an exploit. I used the tried-and-true python -c method for feeding in none ascii characters into our binary.
+With all of this information gathered I was ready to try putting together an exploit. I used the tried-and-true python -c method for feeding in non-ascii characters into our binary.
 My payload ended up being a padding of 20 A's, followed by 0xBEEFCAFE reversed to account for endiness
 ```python
 python3 -c 'import sys;sys.stdout.buffer.write(b"A"*20+b"\xFE\xCA\xEF\xBE")'
