@@ -15,7 +15,7 @@ I see a couple of valid use cases for this tool.
 
 1. Testing rules to ensure John is covering the edge cases you want it to cover
 2. Generating wordlists from a relatively small number of starting words
-3. An all in one space to remeber and learn John's wordlist rules
+3. An all in one space to remember and learn John's wordlist rules
 
 I use John's custom rules here and there throughout the year. I never use it enough to commit all of the interesting switches to memory so I plan on using this as my one stop shop for getting reintroduced and testing all of these rules. This will save me a lot of time and googling and I hope it helps you as well :-)
 
