@@ -3,6 +3,8 @@ title: JohnTheRuler
 date: 2022-01-24 10:00:00 +/-1111
 author: David Wolfe
 categories: [Tools, Web Based]
+toolinfo: A simple web app to test John and HashCat rules
+toolurl: https://www.davidjwolfe.com/JohnTheRuler
 tags: [testing, tools, johntheripper, custom] 
 ---
 ## Overview:
