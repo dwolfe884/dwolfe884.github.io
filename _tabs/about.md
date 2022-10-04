@@ -13,3 +13,6 @@ I've been working in info sec for the past 3 or so years as an intern for differ
 
 ## Educational Experience
 I'm currently working on completing my 4 year degree from ISU. At ISU I'm the Capture the Flag council member for the Information Assurance Student Group (IASG). In this role I spend my time organizing events and finding new competitions for our teams to compete in. On top of my studies at ISU I'm also pursuing an [Undergraduate Certificate in Applied Cybersecurity](https://www.sans.edu/academics/undergraduate) from the SANS Technology Institute. I was awarded a full scholarship from SANS to complete this program after my performance in the yearly [SANS Cyber Fasttrack](https://cyber-fasttrack.org/) CTF competition in 2019.
+
+## Career Objectives
+After graduation I plan on continuing to pursue offensive security through consulting work. I've already recieved an offer from a prominent cyber security company to do red team and offensive security full time next year. I could see myself transitioning to incident response at some point in my career as I've always found that work to be incredibly exhilarating.
