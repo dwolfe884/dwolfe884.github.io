@@ -5,6 +5,8 @@ author: David Wolfe
 categories: [Projects, Iowa State University]
 tags: [project,ISU,portfolio] 
 ---
+![Closed Loop System Diagram](/images/sd/sysloop.png)
+
 ## Description of project 
 The senior design project I was assigned to work on was `CySecAgri`. The deliverable for this project was a user friendly web application that aggregated farming IoT sensor data, processed it into user friendly graphs and charts, and finally ran intrusion detection algorithims against it to detect if there was a threat actor or other issue facing the sensors or the crops they were monitoring.
 
