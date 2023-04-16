@@ -10,14 +10,18 @@ tags: [x86, Reverse Engineering, Obsidian, plugin, tools]
 ## Overview:
 Another quick post about a tool I've been developing. There I was, sitting in my reverse engineering class, writing down x86 assembly, trying to get used to reading common loops and other control flow patterns in raw assembly. This was around the same time that I noticed the new Canvas feature in Obsidian. Then it hit me, what of instead of studying for my assembly quizzes I wrote a plugin for Obsidian to automatically translate all my assembly notes into beautiful flow graphs similar to what Ghidra and Ida do! This project not only forced me to get more familiar with x86 control flow but it had the added bonus of teaching me more about how my favorite note taking app works. While this probably wont be very useful for anyone reading this, it did help me through a semester of note taking, so I think it's worth sharing. Right now this plugin has been designed to work specifically with x86 asm. However, it wouldn't be hard to adapt it to other ISA's.
 
+This plugin has officially been added to the Obsidian community plugins list. You can find it [here](https://obsidian.md/plugins?id=x86-flow-graphing).
+
 ## Uses and Demos:
 This tool has one very specific use case.
 
 1. Easier documentation of reverse engineering notes.
 
-Below I've included a side by side of the assembly and the graph produced by my plugin. It's important to note that the graph will not be well laid out when it's first generated. Moving the nodes around in an order that makes sense is left to the user.
+Below I've included a side by side of the assembly and the graph produced by my plugin. It's important to note that the graph will not be well laid out when it's first generated. Moving the nodes around in an order that makes sense is left to the user. The rules for formatting assembly are included in the README file on [github](https://github.com/dwolfe884/obsidian-x86-flow-graph).
 
 ![Graph Demo](/images/obsidian/demo.png)
 
 ## Link:
 [https://github.com/dwolfe884/obsidian-x86-flow-graph](https://github.com/dwolfe884/obsidian-x86-flow-graph)
+
+[https://obsidian.md/plugins?id=x86-flow-graphing](https://obsidian.md/plugins?id=x86-flow-graphing)
