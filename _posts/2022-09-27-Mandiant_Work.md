@@ -7,7 +7,7 @@ tags: [internship,workexp,portfolio]
 description: Summary 
 ---
 ## Overview:
-Over the summer of 2022 I was able to intern with Google (formerly Mandiant) as a penetration testing intern on their proactive team.
+Over the summer of 2022 I was able to intern with Mandiant (Part of Google Cloud) as a penetration testing intern on their proactive team.
 
 ## Duties and projects
 During my time at Mandiant I was responsible for performing a number of different offensive security tests including:

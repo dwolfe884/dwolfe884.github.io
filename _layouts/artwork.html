@@ -1,0 +1,76 @@
+---
+layout: page
+# The Home page layout
+---
+<div class="art-list" id="post-list">
+{% for post in site.posts %}
+  {% assign show = false %}
+  {% for tag in post.tags%}
+    {% if tag == "3dart" %}
+      {% assign show = true %}
+    {% endif %}
+  {% endfor %}
+  {% if show == true %}
+  <div class="post-preview">
+    <img class="art" alt="Animated background" src="/images/3dart/{{ post.artURL }}" height="250" />
+    <h1>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        {{ post.toolinfo }}
+      </p>
+    </div>
+
+  </div> <!-- .post-review -->
+  {% endif %}
+{% endfor %}
+</div> <!-- #post-list -->
+
+{% if paginator.total_pages > 0 %}
+  {% include post-paginator.html %}
+{% endif %}
+
+<script>
+  var arts = document.getElementsByClassName('art');
+  for (let index = 0; index < arts.length; index++) {
+    var time = Math.random() * (5)+5;
+    arts[index].style.setProperty('--animation-time', time +'s');;
+  }
+</script>
+<style>
+  :root {
+    --animation-time: 2s; 
+  }
+  .art{
+    height: 200px;
+    border: 0px solid rgba(255,255,255,0.5);
+    border-radius: 100%;
+    animation: floating var(--animation-time) ease-in-out alternate-reverse infinite;
+    margin: 20px;
+    perspective: 1000px;
+  }
+  .art:hover {
+    animation-play-state: paused;
+    transform: rotateY(180deg);
+    transform: scale(1.2);
+  }
+  .art-list{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .post-preview{
+    width: 350px;
+    padding: 1rem;
+  }
+
+  @keyframes floating {
+    0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+  }
+</style>

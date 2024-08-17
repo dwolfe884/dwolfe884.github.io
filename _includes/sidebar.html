@@ -22,7 +22,7 @@
     <div class="site-title mt-3">
       <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
     </div>
-    <div class="site-subtitle font-italic">{{ site.tagline }}</div>
+    <div id="typing" class="site-subtitle font-italic"></div>
 
   </div><!-- .profile-wrapper -->
 
@@ -90,3 +90,62 @@
   </div> <!-- .sidebar-bottom -->
 
 </div><!-- #sidebar -->
+<script>
+  var texts = ["Offensive Security Professional", "Technical Communicator", "Security Researcher","Aspiring Educator","3D Artist?"]
+  var wordOffset = 0
+
+  function addLetter(mytext, i){
+      var typetext = document.getElementById("typing");
+      if(mytext.charAt(i) == " "){
+          typetext.innerText = typetext.innerText + " " + mytext.charAt(i+1)
+      }
+      else{
+          typetext.innerText = typetext.innerText + mytext.charAt(i)
+      }
+  }
+
+  function delLetter(mytext, i){
+      var typetext = document.getElementById("typing");
+      typetext.innerText = typetext.innerText.slice(0,typetext.innerText.length-i)
+  }
+  
+  function delWord(){
+      console.log("deleting word")
+      var intr2 = setInterval(() => {
+              var typetext = document.getElementById("typing");
+              index = 1
+              delLetter(texts[0],index)
+              index++
+              if(typetext.innerText.length == 0){
+                  clearInterval(intr2)
+                  wordOffset++
+                  if(wordOffset >= texts.length){
+                      wordOffset = 0
+                  }
+                  addWord(wordOffset)
+              }
+          },50
+          )
+  }
+
+  function addWord(wordOffset){
+      var index = 0
+      var intr = setInterval(() => {
+          addLetter(texts[wordOffset],index)
+          if(texts[wordOffset].charAt(index) == " "){
+              index = index + 2
+          }
+          else{
+              index++
+          }
+          if(index >= texts[wordOffset].length){
+              
+              setTimeout(delWord,1000)
+              clearInterval(intr)
+          }
+      
+      },100)
+  }
+
+  addWord(wordOffset)
+</script>

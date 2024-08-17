@@ -1,7 +1,20 @@
 <!--
   The paginator for post list on HomgPage.
 -->
-
+<!-- Count how many posts have 3dart tag -->
+{% assign count_3dart = 0 %}
+{% assign totalPosts = 0 %}
+{% for post in site.posts %}
+  {% if post.tags.first == "3dart" %}
+    {% assign count_3dart = count_3dart | plus: 1 %}
+  {% endif %}
+  {% assign totalPosts = totalPosts | plus: 1 %}
+{% endfor %}
+{% assign totalnoart = totalPosts | minus: count_3dart%}
+<!-- LIQUID TEMPLATES ARE GARBAGE -->
+{% assign my_float = site.paginate | times: 1.0 %}
+{% assign mytotal_pages = totalnoart | divided_by: my_float %}
+{% assign rounded_up = mytotal_pages | plus: 0.9999 | floor %}
 <ul class="pagination align-items-center mt-4 mb-0 pl-lg-2">
   <!-- left arrow -->
   {% if paginator.previous_page %}
@@ -19,8 +32,7 @@
   <!-- page numbers -->
   {% assign left_ellipsis = false %}
   {% assign right_ellipsis = false %}
-
-  {% for i in (1..paginator.total_pages) %}
+  {% for i in (1..rounded_up) %}
 
     {% assign pre = paginator.page | minus: 1 %}
     {% assign next = paginator.page | plus: 1 %}
@@ -29,15 +41,15 @@
     {% assign show = false %}
 
     {% if paginator.page == 1 %}
-      {% if i <= 3 or i == paginator.total_pages %}
+      {% if i <= 3 or i == rounded_up %}
         {% assign show = true %}
       {% endif %}
-    {% elsif paginator.page == paginator.total_pages %}
+    {% elsif paginator.page == rounded_up %}
       {% if i == 1 or i >= pre_less %}
         {% assign show = true %}
       {% endif %}
     {% else %}
-      {% if i == 1 or i == paginator.total_pages%}
+      {% if i == 1 or i == rounded_up%}
         {% assign show = true %}
       {% elsif i >= pre and i <= next %}
         {% assign show = true %}
@@ -69,7 +81,7 @@
   <!-- mobile pagination -->
   <li class="page-index align-middle">
     <span>{{ paginator.page }}</span>
-    <span class="text-muted">/ {{ paginator.total_pages }}</span>
+    <span class="text-muted">/ {{ rounded_up }}</span>
   </li>
 
   <!-- right arrow -->
