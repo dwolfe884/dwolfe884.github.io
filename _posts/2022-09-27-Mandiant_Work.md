@@ -12,7 +12,7 @@ Over the summer of 2022 I was able to intern with Mandiant (Part of Google Cloud
 ## Duties and projects
 During my time at Mandiant I was responsible for performing a number of different offensive security tests including:
 - [x] Web application fuzzing
-- [x] Creating phsihing campaigns
+- [x] Creating phishing campaigns
 - [x] Creating and executing vishing campaigns
 - [x] dotNet web application reverse engineering & analysis
 - [x] Route-Sixty Sink development
