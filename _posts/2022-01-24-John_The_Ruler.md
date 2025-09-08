@@ -5,7 +5,7 @@ author: David Wolfe
 categories: [Tools, Web Based]
 toolinfo: A simple web app to test John and HashCat rules
 toolurl: https://www.davidjwolfe.com/JohnTheRuler
-tags: [testing, tools, johntheripper, custom] 
+tags: [tools, testing, johntheripper, custom] 
 ---
 ## Overview:
 This is a quick blog post to discuss a tool I've been developing over the past week or so. During a couple recent CTF competitions I found myself needing a quick and easy method of testing custom John The Ripper wordlist rules. I decided to recreate most of the important John rules and compiled it all into a javascript application that is hosted on my GitHub pages.

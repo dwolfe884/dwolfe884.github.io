@@ -1,28 +1,65 @@
 <!--
   The Side Bar
 -->
+{% assign totalPosts = 0 %}
+{% assign totalTools = 0 %}
+{% for post in site.posts %}
+  {% if post.tags.first == "tools" %}
+    {% assign totalTools = totalTools | plus: 1 %}
+  {% endif %}
+  {% assign totalPosts = totalPosts | plus: 1 %}
+{% endfor %}
+{% assign totalTools = totalTools | plus: 1 %}
 
-<div id="sidebar" class="d-flex flex-column align-items-end" lang="{{lang}}">
-  <div class="profile-wrapper text-center">
-    <div id="avatar">
-      <a href="{{ '/' | relative_url }}" alt="avatar" class="mx-auto">
-        {% capture avatar_url %}
+<div id="sidebar" class="d-flex flex-column align-items-center" lang="{{lang}}">
+  <div class="box"></div>
+  <div class="glass flex-container-col">
+    <div class="flex-items-col">
+      <div id="avatar" style="margin-top: 25px;">
+        <a href="{{ '/' | relative_url }}" alt="avatar" class="mx-auto">
+          {% capture avatar_url %}
           {%- if site.avatar contains '://' -%}
-            {{ site.avatar }}
+          {{ site.avatar }}
           {%- elsif site.img_cdn != '' and site.img_cdn -%}
-            {{ site.avatar | prepend: site.img_cdn }}
+          {{ site.avatar | prepend: site.img_cdn }}
           {%- else -%}
-            {{ site.avatar | relative_url }}
+          {{ site.avatar | relative_url }}
           {%- endif -%}
-        {% endcapture %}
-        <img src="{{ avatar_url }}" alt="avatar" onerror="this.style.display='none'">
-      </a>
+          {% endcapture %}
+          <img style="margin-top: 12px;" src="{{ avatar_url }}" alt="avatar" onerror="this.style.display='none'">
+        </a>
+      </div>
     </div>
-
-    <div class="site-title mt-3">
-      <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <div class="flex-items-col">
+      <div class="site-title mt-3">
+        <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      </div>
     </div>
-    <div id="typing" class="site-subtitle font-italic"></div>
+    <div class="flex-items-col">
+      <div class="flex-container">
+        <div class="flex-items">
+          <div class="flex-container-col">
+            <div class="flex-items-col">Blogs</div>
+            <div class="flex-items-col">{{ totalPosts }}</div>
+          </div>
+        </div>
+        <div class="flex-items">
+          <div class="flex-container-col">
+            <div class="flex-items-col">Tools</div>
+            <div class="flex-items-col">{{ totalTools }}</div>
+          </div>
+        </div>
+        <div class="flex-items">
+          <div class="flex-container-col">
+            <div class="flex-items-col">Stars</div>
+            <div class="flex-items-col">31</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex-items-col">
+      <div id="typing" class="site-subtitle font-italic"></div>
+    </div>
 
   </div><!-- .profile-wrapper -->
 
@@ -52,98 +89,98 @@
   <div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center">
 
     {% for entry in site.data.contact %}
-      {% capture url %}
-        {%- if entry.type == 'github' -%}
-          https://github.com/{{ site.github.username }}
-        {%- elsif entry.type == 'twitter' -%}
-          https://twitter.com/{{ site.twitter.username }}
-        {%- elsif entry.type == 'email' -%}
-          {% assign email = site.social.email | split: '@' %}
-          javascript:location.href = 'mailto:' + ['{{ email[0] }}','{{ email[1] }}'].join('@')
-        {%- elsif entry.type == 'rss' -%}
-          {{ "/feed.xml" | relative_url }}
-        {%- else -%}
-          {{ entry.url }}
-        {%- endif -%}
-      {% endcapture %}
+    {% capture url %}
+    {%- if entry.type == 'github' -%}
+    https://github.com/{{ site.github.username }}
+    {%- elsif entry.type == 'twitter' -%}
+    https://twitter.com/{{ site.twitter.username }}
+    {%- elsif entry.type == 'email' -%}
+    {% assign email = site.social.email | split: '@' %}
+    javascript:location.href = 'mailto:' + ['{{ email[0] }}','{{ email[1] }}'].join('@')
+    {%- elsif entry.type == 'rss' -%}
+    {{ "/feed.xml" | relative_url }}
+    {%- else -%}
+    {{ entry.url }}
+    {%- endif -%}
+    {% endcapture %}
 
-      {% if url %}
-      <a href="{{ url }}" aria-label="{{ entry.type }}"
-        {% unless site.theme_mode %}class="order-{{ forloop.index | plus: 2 }}"{% endunless %}
-        {% unless entry.noblank %}target="_blank" rel="noopener"{% endunless %}>
-        <i class="{{ entry.icon }}"></i>
-      </a>
-      {% endif %}
+    {% if url %}
+    <a href="{{ url }}" aria-label="{{ entry.type }}" {% unless site.theme_mode
+      %}class="order-{{ forloop.index | plus: 2 }}" {% endunless %} {% unless entry.noblank %}target="_blank"
+      rel="noopener" {% endunless %}>
+      <i class="{{ entry.icon }}"></i>
+    </a>
+    {% endif %}
 
     {% endfor %}
 
     {% unless site.theme_mode %}
-      {% if site.data.contact.size > 0 %}
-        <span class="icon-border order-2"></span>
-      {% endif %}
+    {% if site.data.contact.size > 0 %}
+    <span class="icon-border order-2"></span>
+    {% endif %}
 
-      <span id="mode-toggle-wrapper" class="order-1">
-        {% include mode-toggle.html %}
-      </span>
+    <span id="mode-toggle-wrapper" class="order-1">
+      {% include mode-toggle.html %}
+    </span>
     {% endunless %}
 
   </div> <!-- .sidebar-bottom -->
 
 </div><!-- #sidebar -->
 <script>
-  var texts = ["Offensive Security Professional", "Technical Communicator", "Security Researcher","Aspiring Educator","3D Artist?"];
+  var texts = ["Offensive Security Professional", "Technical Communicator", "Security Researcher", "Aspiring Educator", "3D Artist?"];
   var wordOffset = 0;
 
-  function addLetter(mytext, i){
-      var typetext = document.getElementById("typing");
-      if(mytext.charAt(i) == " "){
-          typetext.innerText = typetext.innerText + " " + mytext.charAt(i+1);
-      }
-      else{
-          typetext.innerText = typetext.innerText + mytext.charAt(i);
-      }
+  function addLetter(mytext, i) {
+    var typetext = document.getElementById("typing");
+    if (mytext.charAt(i) == " ") {
+      typetext.innerText = typetext.innerText + " " + mytext.charAt(i + 1);
+    }
+    else {
+      typetext.innerText = typetext.innerText + mytext.charAt(i);
+    }
   }
 
-  function delLetter(mytext, i){
-      var typetext = document.getElementById("typing");
-      typetext.innerText = typetext.innerText.slice(0,typetext.innerText.length-i);
-  }
-  
-  function delWord(){
-      console.log("deleting word");
-      var intr2 = setInterval(() => {
-              var typetext = document.getElementById("typing");
-              index = 1;
-              delLetter(texts[0],index);
-              index++;
-              if(typetext.innerText.length == 0){
-                  clearInterval(intr2);
-                  wordOffset++;
-                  if(wordOffset >= texts.length){
-                      wordOffset = 0;
-                  }
-                  addWord(wordOffset);
-              }
-          },50
-          )
+  function delLetter(mytext, i) {
+    var typetext = document.getElementById("typing");
+    typetext.innerText = typetext.innerText.slice(0, typetext.innerText.length - i);
   }
 
-  function addWord(wordOffset){
-      var index = 0;
-      var intr = setInterval(() => {
-          addLetter(texts[wordOffset],index);
-          if(texts[wordOffset].charAt(index) == " "){
-              index = index + 2;
-          }
-          else{
-              index++;
-          }
-          if(index >= texts[wordOffset].length){
-              setTimeout(delWord,1000);
-              clearInterval(intr);
-          }
-      
-      },100);
+  function delWord() {
+    console.log("deleting word");
+    var intr2 = setInterval(() => {
+      var typetext = document.getElementById("typing");
+      index = 1;
+      delLetter(texts[0], index);
+      index++;
+      if (typetext.innerText.length == 0) {
+        clearInterval(intr2);
+        wordOffset++;
+        if (wordOffset >= texts.length) {
+          wordOffset = 0;
+        }
+        addWord(wordOffset);
+      }
+    }, 50
+    )
+  }
+
+  function addWord(wordOffset) {
+    var index = 0;
+    var intr = setInterval(() => {
+      addLetter(texts[wordOffset], index);
+      if (texts[wordOffset].charAt(index) == " ") {
+        index = index + 2;
+      }
+      else {
+        index++;
+      }
+      if (index >= texts[wordOffset].length) {
+        setTimeout(delWord, 1000);
+        clearInterval(intr);
+      }
+
+    }, 100);
   }
 
   addWord(wordOffset);
