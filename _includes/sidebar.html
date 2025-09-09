@@ -11,8 +11,14 @@
 {% endfor %}
 {% assign totalTools = totalTools | plus: 1 %}
 
+<script>
+  $(document).ready(function() {
+  $(".box").css("height", $(".glass").height());
+});
+</script>
+
 <div id="sidebar" class="d-flex flex-column align-items-center" lang="{{lang}}">
-  <div class="box"></div>
+  <div id="bgimg" class="box"></div>
   <div class="glass flex-container-col">
     <div class="flex-items-col">
       <div id="avatar" style="margin-top: 25px;">
@@ -63,7 +69,7 @@
 
   </div><!-- .profile-wrapper -->
 
-  <ul class="w-100">
+  <ul class="sidemid w-100">
 
     <!-- home -->
     <li class="nav-item{% if page.layout == 'home' %}{{ " active" }}{% endif %}">

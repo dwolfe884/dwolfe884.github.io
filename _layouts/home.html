@@ -56,7 +56,7 @@ layout: page
 <div id="post-list">
 
 {% for post in posts %}
-  <div class="post-preview">
+  <div class="fade-in-section post-preview">
     <h1>
       <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
     </h1>
@@ -105,3 +105,42 @@ layout: page
 {% if paginator.total_pages > 0 %}
   {% include post-paginator.html %}
 {% endif %}
+
+<script>
+$(function(){  // $(document).ready shorthand
+  $('.fade-in-section').each( function(i){
+    var bottom_of_object = $(this).position().top + $(this).outerHeight();
+    var bottom_of_window = $(window).scrollTop() + $(window).height();
+    
+    /* If the object is completely visible in the window, fade it it */
+    if( bottom_of_window > bottom_of_object ){
+        
+        $(this).animate({'opacity':'1'},500);
+            
+    }
+    
+}); 
+});
+
+$(document).ready(function() {
+    /* Every time the window is scrolled ... */
+    $(window).scroll( function(){
+        /* Check the location of each desired element */
+        $('.fade-in-section').each( function(i){
+            
+            var bottom_of_object = $(this).position().top + $(this).outerHeight();
+            var bottom_of_window = $(window).scrollTop() + $(window).height();
+            
+            /* If the object is completely visible in the window, fade it it */
+            if( bottom_of_window > bottom_of_object ){
+                
+                $(this).animate({'opacity':'1'},1500);
+                    
+            }
+            
+        }); 
+    
+    });
+    
+});
+</script>
