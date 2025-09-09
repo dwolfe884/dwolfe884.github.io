@@ -100,12 +100,6 @@ layout: page
   </div> <!-- .post-review -->
 {% endfor %}
 
-</div> <!-- #post-list -->
-
-{% if paginator.total_pages > 0 %}
-  {% include post-paginator.html %}
-{% endif %}
-
 <script>
 $(function(){  // $(document).ready shorthand
   $('.fade-in-section').each( function(i){
@@ -144,3 +138,9 @@ $(document).ready(function() {
     
 });
 </script>
+
+</div> <!-- #post-list -->
+
+{% if paginator.total_pages > 0 %}
+  {% include post-paginator.html %}
+{% endif %}
