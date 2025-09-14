@@ -166,7 +166,7 @@
     
     document.body.appendChild(osuCircle);
     $('.circle').animate({'width':'100px','height':'100px', 'opacity':'0'},1000);
-  }
+  };
 
   var texts = ["Offensive Security Professional", "Technical Communicator", "Security Researcher", "Aspiring Educator", "3D Artist?"];
   var wordOffset = 0;
@@ -179,12 +179,12 @@
     else {
       typetext.innerText = typetext.innerText + mytext.charAt(i);
     }
-  }
+  };
 
   function delLetter(mytext, i) {
     var typetext = document.getElementById("typing");
     typetext.innerText = typetext.innerText.slice(0, typetext.innerText.length - i);
-  }
+  };
 
   function delWord() {
     console.log("deleting word");
@@ -203,7 +203,7 @@
       }
     }, 50
     )
-  }
+  };
 
   function addWord(wordOffset) {
     var index = 0;
@@ -221,7 +221,7 @@
       }
 
     }, 100);
-  }
+  };
 
   addWord(wordOffset);
 $(function(){
