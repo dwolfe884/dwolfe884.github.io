@@ -141,7 +141,7 @@
     const osuCircle = document.createElement('div');
     
     osuCircle.classList.add('circle');
-    
+
     osuCircle.style.left = event.clientX + 'px';
     osuCircle.style.top = (event.clientY+window.pageYOffset) + 'px';
     osuCircle.style.zIndex = 100;
@@ -163,7 +163,9 @@
         osuCircle.style.borderColor = "#67239a";
         break;
     }
-    
+    setTimeout(function () {
+      osuCircle.remove()
+    }, 1000)
     document.body.appendChild(osuCircle);
     $('.circle').animate({'width':'100px','height':'100px', 'opacity':'0'},1000);
   };

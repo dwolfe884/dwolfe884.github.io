@@ -109,13 +109,13 @@ ul {
 
 a {
   @extend %link-color;
-  cursor: url(/assets/img/SecondCursorTryv3.png), pointer;
+  cursor: url(/assets/img/bestcurserever.png), pointer;
 }
 
 img {
   max-width: 100%;
   height: auto;
-  cursor: url(/assets/img/SecondCursorTryv3.png), pointer;
+  cursor: url(/assets/img/hehe.png), pointer;
 }
 
 blockquote {
@@ -1961,3 +1961,8 @@ $sidebar-display: "sidebar-display";
   /* This little transform helps center the circle on the exact coordinates */
   transform: translate(-50%, -50%);
 }
+
+.cursorCorner {
+    padding-left: 1rem;
+    border-left: 1px solid var(--main-border-color);
+  }

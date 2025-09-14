@@ -43,6 +43,20 @@
   {% endif %}
   </div> <!-- .access -->
 
+  <div class="cursorCorner">
+      <span>Cursor Corner!</span>
+      <div class="d-flex flex-wrap mt-3 mb-1 mr-3">
+
+        <img alt="Custom Cursor 1" src="/assets/img/SecondCursorTryv3.png" onclick="changeCursor(1)" />
+        <img alt="Custom Cursor 2" src="/assets/img/bestcurserever.png" onclick="changeCursor(2)" />
+        <img alt="Custom Cursor 3" src="/assets/img/bigbuttcurser.png" onclick="changeCursor(3)" />
+        <img alt="Custom Cursor 3" src="/assets/img/hehe.png" onclick="changeCursor(4)" />
+        <img alt="Custom Cursor 3" src="/assets/img/upthere.png" onclick="changeCursor(5)" />
+
+      </div>
+    </div>
+  </div>
+
   {% if include.toc %}
     <!-- BS-toc.js will be loaded at medium priority -->
     <script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script>
@@ -55,3 +69,26 @@
   {% endif %}
 
 </div> <!-- #panel-wrapper -->
+<script>
+  function changeCursor(choice){
+    const body = document.body;
+    const cursorBasePath = '/assets/img/';
+    switch(choice){
+      case 1:
+        body.style.cursor = `url('${cursorBasePath}SecondCursorTryv3.png'), auto`;
+        break;
+      case 2:
+        body.style.cursor = `url('${cursorBasePath}bestcurserever.png'), auto`;
+        break;
+      case 3:
+        body.style.cursor = `url('${cursorBasePath}bigbuttcurser.png'), auto`;
+        break;
+      case 4:
+        body.style.cursor = `url('${cursorBasePath}hehe.png'), auto`;
+        break;
+      case 5:
+        body.style.cursor = `url('${cursorBasePath}upthere.png'), auto`;
+        break;
+    };
+  };
+</script>
