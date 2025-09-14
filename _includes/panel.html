@@ -71,23 +71,38 @@
 <script>
   function changeCursor(choice){
     const body = document.body;
+    const imgs = document.getElementsByTagName("img");
+    const links = document.getElementsByTagName("a");
     const cursorBasePath = '/assets/img/';
+    var fullPath;
     switch(choice){
       case 1:
-        body.style.cursor = `url('${cursorBasePath}SecondCursorTryv3.png'), auto`;
+        fullPath = `url('${cursorBasePath}SecondCursorTryv3.png'), auto`;
+        //body.style.cursor = `url('${cursorBasePath}SecondCursorTryv3.png'), auto`;
         break;
       case 2:
-        body.style.cursor = `url('${cursorBasePath}bestcurserever.png'), auto`;
+        fullPath = `url('${cursorBasePath}bestcurserever.png'), auto`;
+        //body.style.cursor = `url('${cursorBasePath}bestcurserever.png'), auto`;
         break;
       case 3:
-        body.style.cursor = `url('${cursorBasePath}bigbuttcurser.png'), auto`;
+        fullPath = `url('${cursorBasePath}bigbuttcurser.png'), auto`;
+        //body.style.cursor = `url('${cursorBasePath}bigbuttcurser.png'), auto`;
         break;
       case 4:
-        body.style.cursor = `url('${cursorBasePath}hehe.png'), auto`;
+        fullPath = `url('${cursorBasePath}hehe.png'), auto`;
+        //body.style.cursor = `url('${cursorBasePath}hehe.png'), auto`;
         break;
       case 5:
-        body.style.cursor = `url('${cursorBasePath}upthere.png'), auto`;
+        fullPath = `url('${cursorBasePath}upthere.png'), auto`;
+        //body.style.cursor = `url('${cursorBasePath}upthere.png'), auto`;
         break;
+    };
+    body.style.cursor = fullPath;
+    for (let myimg of imgs) {
+      myimg.style.cursor = fullPath;
+    };
+    for (let mylink of links) {
+      mylink.style.cursor = fullPath;
     };
   };
 </script>
