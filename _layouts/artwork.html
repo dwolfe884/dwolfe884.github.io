@@ -12,7 +12,7 @@ layout: page
   {% endfor %}
   {% if show == true %}
   <div class="post-preview">
-    <img class="art" alt="Animated background" src="/images/3dart/{{ post.artURL }}" height="250" />
+    <a style="border: none;" href="{{ post.url | relative_url }}"><img class="art" alt="Animated background" src="/images/3dart/{{ post.artURL }}" height="250" /></a>
     <h1>
       <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
     </h1>
