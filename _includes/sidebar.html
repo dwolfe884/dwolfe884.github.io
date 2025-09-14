@@ -134,6 +134,40 @@
 
 </div><!-- #sidebar -->
 <script>
+
+  document.onclick = function(event){
+    console.log("X: "+event.clientX+" | Y: "+event.clientY);
+    console.log("SCrolL: " + window.pageYOffset)
+    const osuCircle = document.createElement('div');
+    
+    osuCircle.classList.add('circle');
+    
+    osuCircle.style.left = event.clientX + 'px';
+    osuCircle.style.top = (event.clientY+window.pageYOffset) + 'px';
+    osuCircle.style.zIndex = 100;
+    var color = Math.floor(Math.random() * 5);
+    switch(color){
+      case 0:
+        osuCircle.style.borderColor = "#3f9dc9";
+        break;
+      case 1:
+        osuCircle.style.borderColor = "#3e70b9";
+        break;
+      case 2:
+        osuCircle.style.borderColor = "#bb7a75";
+        break;
+      case 3:
+        osuCircle.style.borderColor = "#f6d1b4";
+        break;
+      case 4:
+        osuCircle.style.borderColor = "#67239a";
+        break;
+    }
+    
+    document.body.appendChild(osuCircle);
+    $('.circle').animate({'width':'100px','height':'100px', 'opacity':'0'},1000);
+  }
+
   var texts = ["Offensive Security Professional", "Technical Communicator", "Security Researcher", "Aspiring Educator", "3D Artist?"];
   var wordOffset = 0;
 
