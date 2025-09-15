@@ -281,6 +281,10 @@ if(localStorage.getItem('cursor') != null){
       case '5':
         fullPath = `url('${cursorBasePath}upthere.png'), auto`;
         break;
+      case '6':
+        localStorage.setItem('cursor',5);
+        fullPath = `url('${cursorBasePath}bear_mouse_1.png'), auto`;
+        break;
     };
     body.style.cursor = fullPath;
     for (let myimg of imgs) {

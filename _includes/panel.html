@@ -50,8 +50,9 @@
         <img alt="Custom Cursor 1" src="/assets/img/SecondCursorTryv3.png" onclick="changeCursor(1)" />
         <img alt="Custom Cursor 2" src="/assets/img/bestcurserever.png" onclick="changeCursor(2)" />
         <img alt="Custom Cursor 3" src="/assets/img/bigbuttcurser.png" onclick="changeCursor(3)" />
-        <img alt="Custom Cursor 3" src="/assets/img/hehe.png" onclick="changeCursor(4)" />
-        <img alt="Custom Cursor 3" src="/assets/img/upthere.png" onclick="changeCursor(5)" />
+        <img alt="Custom Cursor 4" src="/assets/img/hehe.png" onclick="changeCursor(4)" />
+        <img alt="Custom Cursor 5" src="/assets/img/upthere.png" onclick="changeCursor(5)" />
+        <img alt="Custom Cursor 6" src="/assets/img/bear_mouse_1.png" onclick="changeCursor(6)" />
 
       </div>
   </div>
@@ -95,6 +96,10 @@
       case 5:
         localStorage.setItem('cursor',5);
         fullPath = `url('${cursorBasePath}upthere.png'), auto`;
+        break;
+      case 6:
+        localStorage.setItem('cursor',6);
+        fullPath = `url('${cursorBasePath}bear_mouse_1.png'), auto`;
         break;
     };
     body.style.cursor = fullPath;
